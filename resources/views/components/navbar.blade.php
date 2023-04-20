@@ -1,16 +1,14 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">Navbar</a>
+    <a class="navbar-brand" href="{{route('homePage')}}">Navbar</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
 
       <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="{{route('createRestaurant')}}">Crea Ristorante</a>
-        </li>
-        @if(Auth::user() == null)
+
+        @guest
         <li class="nav-item">
           <a class="nav-link" href="{{route('login')}}">Login</a>
         </li>
@@ -19,17 +17,25 @@
           <a class="nav-link" href="{{route('register')}}">Registrati</a>
         </li>
         @else
+
         <li class="nav-item">
             <a class="nav-link" href="#" onclick="event.preventDefault();
               document.querySelector('#form-logout').submit();">Logout</a></li>
               <form id="form-logout" method="POST" action="{{route('logout')}}" class="d-none">@csrf</form>
         </li>
-        @endif
-
+        @if(!Auth::user()->is_restAdmin)
         <li class="nav-item">
-          <a class="nav-link" href="#">Disabled</a>
+          <a class="nav-link" href="{{route('becomeRestAdmin')}}">Lavora con Noi</a>
         </li>
+        @else
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="{{route('restaurant.index')}}">Profilo Ristorante</a>
+        </li>
+        @endif
+        @endguest
+
       </ul>
     </div>
   </div>
 </nav>
+
