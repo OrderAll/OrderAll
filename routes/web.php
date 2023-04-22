@@ -20,11 +20,24 @@ Route::get('/',[PublicController::class, 'home'])->name('homePage');
 
 
 Route::get('/create-restaurant', [PublicController::class, 'createRestaurant'])->name('createRestaurant');
+Route::get('/create-dish/{restaurant}', [PublicController::class, 'createDish'])->name('createDish');
 
 
-Route::get('/ristorante/home/', [RestAdminController::class, 'indexRestaurant'])->middleware('isRestAdmin')->name('restaurant.index');
 
+// MIDDLEWARE RESTAURANT ADMIN
 Route::get('/richiesta-ristoratore', [RestAdminController::class, 'becomeRestAdmin'])->middleware('auth')->name('becomeRestAdmin');
 
 Route::get('/rendi-ristoratore/{user}', [RestAdminController::class, 'makeRestAdmin'])->name('makeRestAdmin');
+
+Route::get('/ristorante/home/{restaurant}', [RestAdminController::class, 'indexRestaurant'])->middleware('isRestAdmin')->name('restaurant.index');
+
+Route::get('/ristorante/home/{restaurant}/menu',[RestAdminController::class, 'menu'])->name('menu');
+
+// LATO USER CLIENTE
+Route::get('/all-restaurants',[PublicController::class, 'indexRestaurants'])->name('indexRestaurants');
+
+
+
+
+
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Dish;
 use App\Models\User;
 use App\Models\Restaurant;
 use Illuminate\Http\Request;
@@ -15,8 +16,11 @@ use Illuminate\Support\Facades\Session;
 class RestAdminController extends Controller
 {
     public function indexRestaurant(Restaurant $restaurant){
-        $restaurant=Restaurant::where('user_id','=', auth()->id())->first();
         return view('restaurant.index', compact('restaurant'));
+    }
+    public function menu(Restaurant $restaurant,Dish $dishes){
+        $dishes = Dish::get()->all();
+        return view('restaurant.menu', compact('restaurant','dishes'));
     }
     public function becomeRestAdmin(){
         if (!Auth::user()) {

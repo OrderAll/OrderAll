@@ -8,12 +8,11 @@
                     <p>Indirizzo: {{ $restaurant->map }}</p>
                     <p>Di {{ $restaurant->user->name }}</p>
                 </div>
-                <div class="col-4 bg-primary text-center">
+                <div class="col-4 text-center">
                     <h2>Impostazioni</h2>
-                    <p>Menù</p>
-                    <p>Aggiungi Piatto</p>
+                    <p><a href="{{route('createDish', compact('restaurant'))}}">Aggiungi Piatto</a></p>
+                    <p><a href="{{route('menu', compact('restaurant'))}}">Menù</a></p>
                     <p>Rendi Staff</p>
-
                 </div>
                 <div class="col-4 text-center">
                     <h2>Cucina</h2>
