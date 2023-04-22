@@ -6,13 +6,14 @@
                 <div class="row">
                     @foreach($restaurants as $restaurant)
 
-                            <div class="col-12 col-lg-3 mx-5 d-flex justify-content-center align-items-center">
-                                <div class="card my-2" style="width: 18rem;">
+                            <div class="col-12 col-lg-3 d-flex justify-content-center align-items-center">
+                                <div class="card my-2  d-flex justify-content-center align-items-center text-center" style="width: 10rem;">
                                     <div class="card-body">
                                     <h5 class="card-title">{{$restaurant->name}}</h5>
                                     <p class="card-text">{{$restaurant->description}}</p>
                                     <p class="card-text">{{$restaurant->price}}</p>
-                                    <a href="#" class="btn btn-primary">Vedi Menù</a>
+                                    <p><a href="{{route('menu', compact('restaurant'))}}">Menù</a></p>
+
                                     </div>
                                 </div>
                             </div>

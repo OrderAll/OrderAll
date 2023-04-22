@@ -9,7 +9,6 @@
     <div class="collapse navbar-collapse" id="navbarNav">
 
       <ul class="navbar-nav">
-        <a class="nav-link" href="{{route('indexRestaurants')}}">Ristoranti</a>
 
         
         @guest
