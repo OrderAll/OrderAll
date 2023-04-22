@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Dish;
 use App\Models\User;
+use App\Models\Category;
 use App\Models\Restaurant;
 use Illuminate\Http\Request;
 use App\Mail\BecomeRestAdmin;
@@ -18,10 +19,18 @@ class RestAdminController extends Controller
     public function indexRestaurant(Restaurant $restaurant){
         return view('restaurant.index', compact('restaurant'));
     }
-    public function menu(Restaurant $restaurant,Dish $dishes){
+
+
+
+
+    public function menu(Restaurant $restaurant,Dish $dishes,Category $category){
         $dishes = Dish::get()->all();
-        return view('restaurant.menu', compact('restaurant','dishes'));
+        return view('restaurant.menu', compact('restaurant','dishes', 'category'));
     }
+
+
+
+
     public function becomeRestAdmin(){
         if (!Auth::user()) {
             Session::flash('lavoraConNoi', "Per poter entrare a far parte del nostro team, devi prima registrati");
@@ -31,6 +40,9 @@ class RestAdminController extends Controller
             return redirect('/')->with('message','you have applied to become a reviewer');
         }
     }
+
+
+    
 
     public function makeRestAdmin(User $user){
         Artisan::call('app:make-user-rest-admin', ["email"=>$user->email]);
