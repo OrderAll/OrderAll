@@ -21,13 +21,9 @@ class RestAdminController extends Controller
     }
 
 
-
-
-    public function menu(Restaurant $restaurant,Dish $dishes,Category $category){
-        $dishes = Dish::get()->all();
-        return view('restaurant.menu', compact('restaurant','dishes', 'category'));
+    public function viewDishes(Request $request, $maincategory, $id){
+        
     }
-
 
 
 

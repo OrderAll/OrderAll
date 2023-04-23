@@ -9,19 +9,19 @@
                     <p>Di {{ $restaurant->user->name }}</p>
                 </div>
 
-                <div class="col-4 text-center">
+                <div class="col-12 col-lg-4 text-center">
                     <h2>Cucina</h2>
                     <p>Tutti gli ordini</p>
                     <p>Ordini attivi</p>
                     <p></p>
 
                 </div>
-                <div class="col-4 text-center">
+                <div class="col-12 col-lg-4 text-center">
                     <h2>Sala</h2>
                     <p>Modifica Ordinazione</p>
                     <p>Aggiungi articolo</p>
                 </div>
-                <div class="col-4 text-center">
+                <div class="col-12 col-lg-4 text-center">
                     <h2>Impostazioni</h2>
                     <p><a href="{{route('createDish', compact('restaurant'))}}">Aggiungi Piatto</a></p>
                     <p><a href="{{route('menu', compact('restaurant'))}}">Menù</a></p>

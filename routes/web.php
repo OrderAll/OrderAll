@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Category;
+use App\Models\Restaurant;
 use App\Http\Controllers\RestAdmin;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PublicController;
@@ -31,7 +33,19 @@ Route::get('/rendi-ristoratore/{user}', [RestAdminController::class, 'makeRestAd
 
 Route::get('/ristorante/home/{restaurant}', [RestAdminController::class, 'indexRestaurant'])->middleware('isRestAdmin')->name('restaurant.index');
 
-Route::get('/ristorante/home/{restaurant}/menu',[RestAdminController::class, 'menu'])->name('menu');
+Route::get('/ristorante/menu/{restaurant}',[PublicController::class, 'menu'])->middleware('auth')->name('menu');
+Route::get('/ristorante/menu/{restaurant}/filtered/{category}/',[PublicController::class, 'dishesByCategory'])->middleware('auth')->name('dishesByCategory');
+
+
+
+// Route::controller(PublicController::class)->group(function(){
+//     Route::get('/ristorante/menu/{restaurant}',[PublicController::class, 'menu'])->name('menu');
+//     Route::get('/ristorante/menu/}',[PublicController::class, 'dishesByCategory'] )->name('dishesByCategory');
+
+
+// });
+
+
 
 // LATO USER CLIENTE
 Route::get('/all-restaurants',[PublicController::class, 'indexRestaurants'])->name('indexRestaurants');

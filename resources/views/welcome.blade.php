@@ -1,7 +1,7 @@
 <x-layout>
     <div class="container-fluid">
         <div class="row">
-            <div class="col-12 vh-100 ">
+            <div class="col-12 vh-100 navCategoryContainerCustom">
               <div class="row">
                     <div class="col-12 d-flex justify-content-center align-items-center my-5">
                       <h1>OrderAll</h1>
