@@ -17,14 +17,12 @@ class PublicController extends Controller
 
 
     public function home(Restaurant $restaurant) {
-
-            $restaurants = Restaurant::get()->all();
-            $restaurant = Restaurant::where('user_id', auth()->id())->first();
+        $restaurants=Restaurant::get()->all();
 
 
 
+        return view('welcome', compact('restaurants'));
 
-        return view('welcome', compact('restaurants','restaurant'));
     }
 
 

@@ -31,7 +31,7 @@ Route::get('/all-restaurants',[PublicController::class, 'indexRestaurants'])->na
 
 // MIDDLEWARE AUTH USER
 Route::get('/ristorante/menu/{restaurant}',[PublicController::class, 'menu'])->name('menu');
-Route::get('/ristorante/menu/{restaurant}/filtered/{category}/',[PublicController::class, 'dishesByCategory'])->middleware('auth')->name('dishesByCategory');
+Route::get('/ristorante/menu/{restaurant}/filtered/{category}/',[PublicController::class, 'dishesByCategory'])->name('dishesByCategory');
 Route::get('/richiesta-ristoratore', [RestAdminController::class, 'becomeRestAdmin'])->middleware('auth')->name('becomeRestAdmin');
 
 // MIDDLEWARE RESTAURANT ADMIN
