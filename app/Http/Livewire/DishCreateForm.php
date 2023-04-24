@@ -36,7 +36,7 @@ class DishCreateForm extends Component
     ];
 
     public function store(Restaurant $restaurant){
-
+        $restaurant=Restaurant::where('user_id', auth()->id())->first();
         $this->validate();
         $dish=Dish::create([
             'name'=>$this->name,
@@ -50,7 +50,7 @@ class DishCreateForm extends Component
 
 
         $this->reset();
-        return redirect(route('homePage'))->with('message', 'Piatto creato correttamente');
+        return view('restaurant.index', compact('restaurant'));
 
     }
 }

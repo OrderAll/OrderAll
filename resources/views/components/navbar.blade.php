@@ -20,6 +20,10 @@
           <a class="nav-link" href="{{route('register')}}">Registrati</a>
         </li>
         @else
+        @if(auth()->user()->table_id)
+        <a class="nav-link" href="{{route('showTable')}}">Tavolo</a>
+
+        @endif
 
         <li class="nav-item">
             <a class="nav-link" href="#" onclick="event.preventDefault();

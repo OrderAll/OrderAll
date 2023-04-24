@@ -11,14 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tables', function (Blueprint $table) {
-            $table->id();
-            $table->string('number');
-            $table->bigInteger('count')->default(0);
+        Schema::table('users', function (Blueprint $table) {
             $table->unsignedBigInteger('rest_id')->nullable();
-            $table->foreign('rest_id')->references('id')->on('restaurants')->onDelete('cascade');
-            $table->timestamps();
-
+            $table->foreign('rest_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
@@ -27,6 +22,9 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tables');
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropForeign(['rest_id']);
+            $table->dropColumn(['rest_id']);
+        });
     }
 };

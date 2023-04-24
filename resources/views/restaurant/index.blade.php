@@ -25,6 +25,7 @@
                     <h2>Impostazioni</h2>
                     <p><a href="{{route('createDish', compact('restaurant'))}}">Aggiungi Piatto</a></p>
                     <p><a href="{{route('menu', compact('restaurant'))}}">Menù</a></p>
+                    <p><a href="{{route('createTable', compact('restaurant'))}}">Crea Tavolo</a></p>
                     <p>Rendi Staff</p>
                 </div>
             </div>

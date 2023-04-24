@@ -17,12 +17,9 @@ use Illuminate\Support\Facades\Session;
 class RestAdminController extends Controller
 {
     public function indexRestaurant(Restaurant $restaurant){
-        return view('restaurant.index', compact('restaurant'));
-    }
-
-
-    public function viewDishes(Request $request, $maincategory, $id){
+        $restaurantAdmin = Restaurant::where('user_id', auth()->id())->get();
         
+        return view('restaurant.index', compact('restaurant'));
     }
 
 
