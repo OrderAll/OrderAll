@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Dish;
 use App\Models\Table;
+use App\Models\Category;
 use App\Models\Restaurant;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\User;
@@ -55,7 +57,7 @@ class TableController extends Controller
         return view('restaurant.allTables', compact('restaurant','tables','users'));
 
     }
-    public function addToTable(Request $request, Table $table)
+    public function addToTable(Request $request, Table $table,Restaurant $restaurant)
     {
         $table_id = $request->input('table_id');
         $rest_id = $request->input('rest_id');
@@ -69,13 +71,27 @@ class TableController extends Controller
 
         $table->count = $userCount;
         $table->save();
+        $user=Auth::user();
+        $users=User::where('table_id', $table->id)->get();
+        $categories=Category::get()->all();
+        $restaurant=Restaurant::where('id', $user->rest_id)->first();
 
 
-        return redirect(route('homePage'));
+        $dishes=Dish::where('rest_id', $user->rest_id)->get();
+
+        return view('restaurant.showTable', compact('restaurant','table','dishes','users','user','categories'));
     }
     public function showTable(Restaurant $restaurant, Table $table, User $user){
         $user=Auth::user();
-        return view('restaurant.showTable', compact('restaurant','table'));
+        $restaurant=Restaurant::where('id', $user->rest_id)->first();
+        $table=Table::where('rest_id', $user->rest_id)->first();
+
+        $users=User::where('table_id', $table->id)->get();
+        $dishes=Dish::where('rest_id', $user->rest_id)->get();
+        $categories=Category::get()->all();
+
+
+        return view('restaurant.showTable', compact('restaurant','table','dishes','users','user','categories'));
     }
 
 

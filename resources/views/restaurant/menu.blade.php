@@ -6,7 +6,6 @@
                 <div class="row">
                     @foreach($dishes as $dish)
 
-                        @if($restaurant->id == $dish->rest_id )
 
                             <div class="col-12 col-lg-3 d-flex justify-content-center align-items-center">
 
@@ -17,15 +16,12 @@
                                         <p class="card-text">Descrizione: {{$dish->description}}</p>
                                         <p class="card-text">{{$dish->price}} $</p>
                                         <p class="card-text">{{$dish->category->name}}</p>
-                                        <a href="#" class="btn btn-primary">Aggiungi al carrello</a>
-                                        <p>{{$restaurant->name}}</p>
 
                                     </div>
                                 </div>
 
                             </div>
 
-                        @endif
 
                     @endforeach
                 </div>

@@ -13,10 +13,11 @@
 
                                     <h5 class="card-title">{{$restaurant->name}}</h5>
                                     <p class="card-text">{{$restaurant->description}}</p>
-                                    <p class="card-text">{{$restaurant->price}}</p>
+                                    <p class="card-text">{{$restaurant->map}}</p>
                                     <p><a href="{{route('menu', compact('restaurant'))}}">Menù</a></p>
-
+                                    @if(empty($user->table_id))
                                     <p><a href="{{route('allTables', compact('restaurant'))}}">Vai ai tavoli</a></p>
+                                    @endif
 
                                     </div>
                                 </div>

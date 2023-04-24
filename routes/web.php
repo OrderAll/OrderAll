@@ -30,7 +30,7 @@ Route::get('/create-dish/{restaurant}', [PublicController::class, 'createDish'])
 Route::get('/all-restaurants',[PublicController::class, 'indexRestaurants'])->name('indexRestaurants');
 
 // MIDDLEWARE AUTH USER
-Route::get('/ristorante/menu/{restaurant}',[PublicController::class, 'menu'])->middleware('auth')->name('menu');
+Route::get('/ristorante/menu/{restaurant}',[PublicController::class, 'menu'])->name('menu');
 Route::get('/ristorante/menu/{restaurant}/filtered/{category}/',[PublicController::class, 'dishesByCategory'])->middleware('auth')->name('dishesByCategory');
 Route::get('/richiesta-ristoratore', [RestAdminController::class, 'becomeRestAdmin'])->middleware('auth')->name('becomeRestAdmin');
 
