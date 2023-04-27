@@ -31,6 +31,8 @@ Route::get('/all-restaurants',[PublicController::class, 'indexRestaurants'])->na
 
 // MIDDLEWARE AUTH USER
 Route::get('/ristorante/menu/{restaurant}',[PublicController::class, 'menu'])->name('menu');
+Route::post('/ristorante/menu/filtered', [PublicController::class, 'selectMenuCategory'])->name('selectMenuCategory');
+
 Route::get('/ristorante/menu/{restaurant}/filtered/{category}/',[PublicController::class, 'dishesByCategory'])->name('dishesByCategory');
 Route::get('/richiesta-ristoratore', [RestAdminController::class, 'becomeRestAdmin'])->middleware('auth')->name('becomeRestAdmin');
 
@@ -52,9 +54,10 @@ Route::get('/ristorante/profilo/{restaurant}', [RestAdminController::class, 'ind
 Route::post('/ristorante/add-to-table/{table}', [TableController::class, 'addToTable'])->middleware('auth')->name('addToTable');
 Route::get('/ristorante/{restaurant}/all-tables', [TableController::class, 'allTables'])->name('allTables');
 Route::get('/ristorante/', [TableController::class, 'showTable'])->name('showTable');
+Route::post('/ristorante/', [TableController::class, 'selectCategory'])->middleware('auth')->name('selectCategory');
 
 
 
 
 
-
+Route::get('/profile', [PublicController::class, 'profile'])->middleware('auth')->name('profile');

@@ -91,8 +91,33 @@ class PublicController extends Controller
 
     }
 
+    public function profile(Restaurant $restaurant){
+        $user=Auth::user();
+        $restaurant=Restaurant::where('user_id', $user->id)->first();
+        return view('profile', compact('restaurant','user'));
+    }
         
-        
+    public function selectMenuCategory(Restaurant $restaurant, Request $request, Table $table)
+    {
+        $category_input = $request->input('category_id');
+        $category_all = $request->input('category_all');
+        $restaurant_id =$request->input('restaurant_id');
+        $restaurant=Restaurant::where('id',$restaurant_id)->first();
+        $categories=Category::get()->all();
+
+        if(!empty($category_all)){
+            $dishes=Dish::where('rest_id', $restaurant->id)->orderBy('category_id')->get();
+
+        }else{
+            $dishes=Dish::where('rest_id', $restaurant->id)->where('category_id', $category_input)->get();
+
+
+        }
+
+
+
+        return view('restaurant.menu', compact('restaurant','dishes','categories'));
+    }
 }
 
 

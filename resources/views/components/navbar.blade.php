@@ -14,15 +14,15 @@
 </header>
 
 
-<nav class="navbar navbar-expand-lg">
-  <div class="container">
+<nav class="navbar navbar-expand-lg " >
+  <div class="container ">
       <a class="navbar-brand" href="{{route('homePage')}}">
           OrderAll
       </a>
 
       @auth
         @if(Auth::user()->table_id)
-          <a  href="{{route('showTable')}}" class="btn custom-btn d-lg-none ms-auto me-4">Tavolo</a>
+          <a  href="{{route('showTable')}}" class="btn custom-btn d-lg-none ms-auto me-4 ">Tavolo</a>
         @endif
       @endauth
 
@@ -31,8 +31,8 @@
           <span class="navbar-toggler-icon"></span>
       </button>
 
-      <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav align-items-lg-center ms-auto me-lg-5">
+      <div class="collapse navbar-collapse " id="navbarNav">
+          <ul class="navbar-nav align-items-lg-center ms-auto me-lg-5>
 
             <li class="nav-item">
               <a class="nav-link " href="{{route('indexRestaurants')}}">Ristoranti</a>
@@ -50,14 +50,14 @@
                 <li class="nav-item">
                   <a class="nav-link" href="{{route('becomeRestAdmin')}}">Lavora con Noi</a>
                 </li>
-              @elseif($restaurant->user_id == Auth::user()->id)
+              @elseif(!empty(Auth::user()->is_restAdmin))
+
                 <li class="nav-item">
-                  <a class="nav-link " aria-current="page" href="{{route('restaurant.index')}}">Profilo Ristorante</a>
+                  <a class="nav-link " aria-current="page" href="{{route('profile')}}">Profilo</a>
                 </li>
-              @else
-                  <p>ERRORE</p>
               @endif
               <li class="nav-item">
+
                 <a class="nav-link" href="#" onclick="event.preventDefault();
                   document.querySelector('#form-logout').submit();">Logout</a></li>
                   <form id="form-logout" method="POST" action="{{route('logout')}}" class="d-none">@csrf</form>

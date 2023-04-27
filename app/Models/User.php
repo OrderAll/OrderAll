@@ -47,4 +47,11 @@ class User extends Authenticatable
         return $this->hasOne(Restaurant::class);
 
     }
+
+    public function resetRestAndTableIds()
+{
+    $this->rest_id = null;
+    $this->table_id = null;
+    $this->save();
+}
 }

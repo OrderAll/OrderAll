@@ -1,4 +1,9 @@
 <x-layout>
+    <div class="tornaIndietro" style="">
+        <a href="http://">
+            <i class="fa-solid fa-arrow-left fa-2x"></i>
+        </a>
+    </div>
 <div class="container d-flex justify-content-center align-items-center vh-100">
     <div class="row">
         <div class="col-12 shadow p-5  d-flex">
@@ -26,6 +31,7 @@
                     <p><a href="{{route('createDish', compact('restaurant'))}}">Aggiungi Piatto</a></p>
                     <p><a href="{{route('menu', compact('restaurant'))}}">Menù</a></p>
                     <p><a href="{{route('createTable', compact('restaurant'))}}">Crea Tavolo</a></p>
+                    <p><a href="{{route('allTables', compact('restaurant'))}}">Mostra Tavoli</a></p>
                     <p>Rendi Staff</p>
                 </div>
             </div>

@@ -81,13 +81,38 @@ class TableController extends Controller
 
         return view('restaurant.showTable', compact('restaurant','table','dishes','users','user','categories'));
     }
+    public function selectCategory(Request $request, Table $table)
+    {
+        $category_input = $request->input('category_id');
+        $category_all = $request->input('category_all');
+        $user=Auth::user();
+        $restaurant=Restaurant::where('id', $user->rest_id)->first();
+        $table=Table::where('rest_id', $user->rest_id)->first();
+
+        $users=User::where('table_id', $table->id)->get();
+        $categories=Category::get()->all();
+
+        if(!empty($category_all)){
+            $dishes=Dish::where('rest_id', $user->rest_id)->orderBy('category_id')->get();
+
+        }else{
+            $dishes=Dish::where('rest_id', $user->rest_id)->where('category_id', $category_input)->get();
+
+
+        }
+
+
+
+
+        return view('restaurant.showTable', compact('restaurant','table','dishes','users','user','categories'));
+    }
     public function showTable(Restaurant $restaurant, Table $table, User $user){
         $user=Auth::user();
         $restaurant=Restaurant::where('id', $user->rest_id)->first();
         $table=Table::where('rest_id', $user->rest_id)->first();
 
         $users=User::where('table_id', $table->id)->get();
-        $dishes=Dish::where('rest_id', $user->rest_id)->get();
+        $dishes=Dish::where('rest_id', $user->rest_id)->orderByDesc('category_id')->get();
         $categories=Category::get()->all();
 
 

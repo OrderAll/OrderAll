@@ -1,4 +1,9 @@
 <x-layout>
+    <div class="tornaIndietro" style="">
+        <a href="http://">
+            <i class="fa-solid fa-arrow-left fa-2x"></i>
+        </a>
+    </div>
 <div class="container">
     <div class="row">
         <div class="col-12">
